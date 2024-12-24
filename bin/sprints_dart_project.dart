@@ -13,6 +13,7 @@ class Book {
 
   void displayInfo() {
     print("Book info:\nID: $id \nTitle: $title \nBorrowed: $borrowed\n");
+
   }
 }
 
@@ -22,9 +23,15 @@ class User {
   List<Book> borrowedBooks;
   User(this.id, this.name, this.borrowedBooks);
 
-  dynamic displayInfo() {
+  void displayInfo() {
     print("User info: \nID: $id \nName:$name");
-    return User(id, name, borrowedBooks);
+    if (borrowedBooks.isEmpty) {
+      print("no books borrowed");
+    } else {
+      for (var borrowedBook in borrowedBooks) {
+        print(borrowedBook.title);
+      }
+    }
   }
 }
 
@@ -160,4 +167,6 @@ main() {
   library.returnBook(4, 3, 2);
   library.returnBook(2, 1, 2);
   library.returnBook(3, 2);
+  library.bookList[0].displayInfo();
+  library.usersList[0].displayInfo();
 }
